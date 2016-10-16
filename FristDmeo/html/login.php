@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
-    <title>µÇÂ¼</title>
+    <title>ç™»å½•</title>
     <script type="text/javascript">
         function refreshVerifyCode() {
             document.getElementById('code').src = "getVerify.php?"+Math.random();
@@ -12,10 +12,10 @@
 <body>
 
 <form action="http://127.0.0.1:2046/wed/LoginServlet" method="post">
-    ÓÃ»§£º<input type="text" name="username"/><br/>
-    ÃÜÂë£º<input type="password" name="password"/><br/>
-    ÑéÖ¤Âë:<img id="code" src="getVerify.php" title="ÑéÖ¤Âë" onclick="refreshVerifyCode()">
-    <input type="submit" value="±¦±¦ÎÒ°®Äã"/>
+    ç”¨æˆ·å<input type="text" name="username"/><br/>
+    å¯†ç <input type="password" name="password"/><br/>
+    éªŒè¯ç <img id="code" src="getVerify.php" title="éªŒè¯ç " onclick="refreshVerifyCode()">
+    <input type="submit" value="ç™»å½•"/>
 </form>
 </body>
 </html>
