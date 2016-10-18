@@ -1,3 +1,3 @@
 <?php
-require_once '../include.php';
-verifyImage(1,4);
+require_once '../php/image.php';
+verifyImage(3, 4);
