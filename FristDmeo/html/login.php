@@ -7,6 +7,7 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script type="text/javascript" src="../js/jquery.js"></script>
     <style>
         body {
             font-size: 62.5%;
@@ -27,12 +28,19 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding-top: 0.5rem;
+            height: auto; /* 这样写兼容低版本ie*/
+            padding-top: 0.5rem; /*为了兼容ie ，否则写成 固定值 10px 等*/
             padding-bottom: 0.5rem;
             box-shadow: 0px 0px 10px #757575;
             /*阴影*/
-            background: -webkit-linear-gradient(#FFFFFF, #FFFFFF);
             /*针对不同浏览器的效果*/
+            background: -webkit-linear-gradient(#FFFFFF, #FFFFFF);
+            -moz-box-shadow: 0px 0px 10px #757575; /*firefox*/
+            -webkit-box-shadow: 0px 0px 10px #757575; /*webkit*/
+            /* 以下两句兼容低版本ie*/
+            /*filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FFFFFF', endColorStr='#FFFFFF', gradientType='0');
+            filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);*/
+            background-color: #FFFFFF;
             background: -moz-linear-gradient(#FFFFFF, #FFFFFF);
             background: -o-linear-gradient(#FFFFFF #FFFFFF);
             background: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#FFFFFF));
@@ -42,7 +50,8 @@
             text-align: center;
             font-size: x-large;
             color: #D79314;
-        / / text-align: -moz-center;
+            text-align: -moz-center;
+            text-align: center;
             z-index: 1000;
             /*clear: both;*/
         }
@@ -120,58 +129,85 @@
     <script type="text/javascript">
         function refreshVerifyCode() {
             document.getElementById('code').src = "getVerify.php?" + Math.random();
+        }
+        function login() {
             /*var xhr = new XMLHttpRequest;
              xhr.open('post', '../php/mysql.php');
-             xhr.send(null);
+             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+             var params = 'username=' + document.getElementById('username').value
+             + '&password=' + document.getElementById('password').value;
+             xhr.send(params);
              xhr.onreadystatechange = function () {
-             if(xhr.readyState == 4 && xhr.status == 200) {
-             alert(xhr.responseText);
+             if (xhr.readyState == 4 && xhr.status == 200) {
+
              }
              }*/
-            /* var ajax = InitAjax();
-             var url = "./php/mysql.php";
-             ajax.open("POST", url, true);
-             ajax.onreadystatechange = function () {
-             alert("ppppp");
-             if (ajax.readyState == 4 && ajax.status == 200) {
-             alert(ajax.responseText);
-             } else {
-             alert("出错了");
-             }
-             }*/
+
+
+
+            var name = document.getElementById('username').value;
+            var psd = document.getElementById('password').value;
+
+
+           /* $.ajax({
+                type: "Post",
+                url: "http://localhost/project/PhpDemo/FristDmeo/php/mysql.php",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{ 'username': '" + name + "', 'password': '" + psd + "' }",
+                success: function (data) {
+                    alert("success");
+                },
+                error: function (err) {
+                    alert("error");
+                }
+            });*/
+
+
+            $.post(
+                "http://localhost/project/PhpDemo/FristDmeo/php/mysql.php",
+                {
+                    username: "name",
+                    password: "psd"
+                },
+                function (results) {
+                    alert("dfsfsdf");
+                    var parsedJson = jQuery.parseJSON(results);
+                    alert(parsedJson.username);
+                }
+                ,
+                "json");
         }
     </script>
 </head>
 <body>
 
-<form action="../php/mysql.php" method="post">
-    <body>
-    <div class="warning">
-        登陆
-    </div>
-    <div class="holder">
-        登陆
-    </div>
-    <div style="margin-top: 5%;">
-        <input type="text" placeholder="用户名" name="username">
-        <input type="password" placeholder="密码" name="password">
+<body>
+<div class="warning">
+    登陆
+</div>
+<div class="holder">
 
-        <p><input type="email" placeholder="验证码" name="password"
-                  style="width: 30% ; height: 38px;vertical-align: middle;line-height:28px;margin:0px"> <img
-                id="code" src="getVerify.php" style="vertical-align: middle" onclick="refreshVerifyCode()"></p>
+</div>
+<div style="margin-top: 5%;">
+    <input type="text" id="username" placeholder="用户名" name="username">
+    <input type="password" id="password" placeholder="密码" name="password">
 
-    </div>
-    <div style="align-content: center; width: 100%;">
-        <center>
-            <button class="button" type="submit">登陆</button>
-        </center>
-    </div>
-    </body>
-    <!--<br>用户名<input type="text" name="username"/><br/>
-    <br>密码<input type="password" name="password"/><br/>
+    <p><input type="email" id="verify" placeholder="验证码" name="verify"
+              style="width: 30% ; height: 38px;vertical-align: middle;line-height:28px;margin:0px"> <img
+            id="code" src="getVerify.php" style="vertical-align: middle" onclick="refreshVerifyCode()"></p>
 
-    验证码<img id="code" src="getVerify.php" onclick="refreshVerifyCode()">
-    <input type="submit" value="提交">-->
-</form>
+</div>
+<div style="align-content: center; width: 100%;">
+    <center>
+        <button class="button" onclick="login()">登陆</button>
+    </center>
+</div>
+</body>
+<!--<br>用户名<input type="text" name="username"/><br/>
+<br>密码<input type="password" name="password"/><br/>
+
+验证码<img id="code" src="getVerify.php" onclick="refreshVerifyCode()">
+<input type="submit" value="提交">-->
 </body>
 </html>

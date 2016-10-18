@@ -5,7 +5,7 @@
       <paths name="XAMPP">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/FristDmeo" />
+            <mapping local="$PROJECT_DIR$" web="/project/PhpDemo/FristDmeo" />
           </mappings>
         </serverdata>
       </paths>
