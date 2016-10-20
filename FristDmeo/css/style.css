@@ -17,18 +17,24 @@ body {
 	font-size: 13px;
 	line-height: 20px;
 	min-width: 998px;
-	border-top:3px solid #919191;
-	background:url(../images/BG.jpg) repeat;
-}
-#wrapper {	
-	padding: 70px 0 0 0px;
-	height: 100%;
+	/*border-top:3px solid #919191;顶部边框*/
 }
 #wrapper {
+	height: 350px;
+	width: 350px;
+	margin-left: -175px;
+	position: relative;
+	/*border: 1px solid #D4CD49; 边框*/
+	position:fixed;
+	left:50%;
+	top:30%;
+
+}
+/*#wrapper {
 	width: 350px;
 	margin:auto;
 	position: relative;
-}
+}*/
 
 #wrappertop {
 	background:url(../images/wrapper_top.png) no-repeat;
@@ -38,6 +44,7 @@ body {
 #wrappermiddle {
 	background:url(../images/wrapper_middle.png) repeat-y;
 	height:240px;
+	width: 350px;
 }
 
 #wrapperbottom {

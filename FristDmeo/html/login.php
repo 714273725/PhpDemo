@@ -162,7 +162,7 @@
                     alert("error");
                 }
             });*/
-            
+
             /*post不能直接做错误处理，需要另外配置错误处理的方式*/
             $.post(
                 "http://localhost/project/PhpDemo/FristDmeo/php/mysql.php",
