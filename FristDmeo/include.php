@@ -5,3 +5,4 @@ set_include_path(".".PATH_SEPARATOR.ROOT.DIRECTORY_SEPARATOR."lib".PATH_SEPARATO
 require_once 'image.php';
 require_once 'string.php';
 require_once 'mysql.php';
+require_once 'user.function.php';

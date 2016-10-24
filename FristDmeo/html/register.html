@@ -21,7 +21,7 @@
                     <input type="email" name="email" id="email" class="ipt" placeholder="邮箱地址" required>
                 </div>
                 <div class="group-ipt user">
-                    <input type="text" name="user" id="user" class="ipt" placeholder="选择一个用户名" required>
+                    <input type="text" name="user" id="user" class="ipt" placeholder="请输入用户名" required>
                 </div>
                 <div class="group-ipt password">
                     <input type="password" name="password" id="password" class="ipt" placeholder="设置登录密码" required>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="group-ipt verify">
                     <input type="text" name="verify" id="verify" class="ipt" placeholder="输入验证码" required>
-                    <img src="getVerify.php" class="imgcode">
+                    <img src="../php/getVerify.php" class="imgcode">
                 </div>
             </div>
         </div>
@@ -61,13 +61,28 @@
     }, function () {
         layer.closeAll('tips');
     }).click(function () {
-        $(this).attr('src', 'getVerify.php?' + Math.random());
+        $(this).attr('src', '../php/getVerify.php?' + Math.random());
     })
 
     $(".login-btn").click(function () {
         var email = $("#email").val();
-        var password = $("#password").val();
-        var verify = $("#verify").val();
+        var psd = $("#password").val();
+        var verify = $("#user").val();
+        $.post(
+                "http://localhost/project/PhpDemo/FristDmeo/php/register.php",
+                {
+                    email: email,
+                    user_name: verify,
+                    password: psd
+                },
+                function (results) {
+                    alert(results);
+                    var parsedJson = jQuery.parseJSON(results);
+                    //alert(parsedJson.msg);
+                }
+        );
+
+
     })
     $("#remember-me").click(function () {
         var n = document.getElementById("remember-me").checked;

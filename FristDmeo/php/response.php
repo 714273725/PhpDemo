@@ -13,7 +13,7 @@ class Response
         $connect = mysqli_connect("localhost:3306", "root", "Ge2007314035");
         mysqli_select_db($connect, "GEGE");
         if (!$connect) {
-            die('Could not connect: ' . mysqli_error());
+            die('Could not connect: ' . mysqli_error($connect));
         } else {
             $result = mysqli_query($connect,
                 "select * from admin WHERE username ='{$username}' AND password='{$password}'");
@@ -33,13 +33,13 @@ class Response
         $connect = mysqli_connect("localhost:3306", "root", "Ge2007314035");
         mysqli_select_db($connect, "GEGE");
         if (!$connect) {
-            die('Could not connect: ' . mysqli_error());
+            die('Could not connect: ' . mysqli_error($connect));
         } else {
             $result = mysqli_query($connect, "select * from admin");
             while (@$row = mysqli_fetch_array($result, $result_type)) {
                 $rows[] = $row;
             }
-            return $rows;
+            echo $rows;
         }
         mysqli_close($connect);
     }

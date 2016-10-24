@@ -193,7 +193,7 @@
 
     <p><input type="email" id="verify" placeholder="验证码" name="verify"
               style="width: 30% ; height: 38px;vertical-align: middle;line-height:28px;margin:0px"> <img
-            id="code" src="getVerify.php" style="vertical-align: middle" onclick="refreshVerifyCode()"></p>
+            id="code" src="../php/getVerify.php" style="vertical-align: middle" onclick="refreshVerifyCode()"></p>
 
 </div>
 <div style="align-content: center; width: 100%;">

@@ -161,6 +161,7 @@ canvas {
     position: relative;
     margin: 0;
     overflow: hidden;
+    vertical-align:middle;
 }
 
 .form .group .group-ipt input {
@@ -187,6 +188,7 @@ canvas {
     top: 2px;
     cursor: pointer;
     height: 40px;
+    vertical-align:middle;
 }
 
 .button {

@@ -23,7 +23,7 @@ body {
 	height: 350px;
 	width: 350px;
 	margin-left: -175px;
-	position: relative;
+	/*position: relative;*/
 	/*border: 1px solid #D4CD49; 边框*/
 	position:fixed;
 	left:50%;
