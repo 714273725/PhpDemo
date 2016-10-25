@@ -2,7 +2,7 @@
 define("mySql_host", "localhost:3306");
 define("mySql_user", "root");
 define("mySql_password", "Ge2007314035");
-define("mySql_charset", "gbk");
+define("mySql_charset", "utf-8");
 
 class MySqlHelper
 {
@@ -45,11 +45,12 @@ class MySqlHelper
 
     static function _insert($link, $array, $table)
     {
+
         $keys = join(',', array_keys($array));
         $values = "'" . join("','", array_values($array)) . "'";
         $sql = "insert {$table}({$keys}) VALUES ({$values})";
-        var_dump($sql);
-        mysqli_query($link,"set name GBK");
+        //var_dump(mb_detect_encoding($values));
+       // mysqli_query($link, "set name utf-8");
         $res = mysqli_query($link, $sql);
         if ($res) {
             return $sql;
@@ -57,7 +58,6 @@ class MySqlHelper
             return false;
         }
     }
-
 
 
 }

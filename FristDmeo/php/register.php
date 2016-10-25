@@ -29,7 +29,7 @@ if ($_email && $_username && $_password) {
         $feedBack["msg"] = "注册失败";
         $feedBack["data"] = "测试-失败";
     }
-    echo json_encode($feedBack);
+    echo json_encode($feedBack, JSON_UNESCAPED_UNICODE);
 } else {
 
 }

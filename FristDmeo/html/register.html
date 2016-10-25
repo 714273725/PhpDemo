@@ -70,9 +70,10 @@
         var verify = $("#user").val();
         $.post(
                 "http://localhost/project/PhpDemo/FristDmeo/php/register.php",
+
                 {
-                    email: email,
-                    user_name: verify,
+                    email:email,
+                    user_name: decodeURI(verify),
                     password: psd
                 },
                 function (results) {
