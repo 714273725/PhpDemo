@@ -6,8 +6,11 @@ define("mySql_charset", "utf-8");
 
 class MySqlHelper
 {
-    static function _query($link, $sql, $result_type = MYSQLI_ASSOC)
+    static function _query($table, $link, $array, $result_type = MYSQLI_ASSOC)
     {
+        $keys = join(',', array_keys($array));
+        $values = "'" . join("','", array_values($array)) . "'";
+        $sql = "insert {$table}({$keys}) VALUES ({$values})";
         $result = mysqli_query($link, $sql);
         if ($result && mysqli_num_rows($result) > 0) {
             return mysqli_fetch_array($result, $result_type);
@@ -15,6 +18,22 @@ class MySqlHelper
             return false;
         }
     }
+
+
+    static function _check($table, $link, $array, $result_type = MYSQLI_ASSOC)
+    {
+
+        $keys = array_keys($array);
+        $values = array_values($array);
+        $sql = "select * from {$table} where ";
+        for($i=0;$i<count($keys);$i++){
+            $sql .= $keys[$i].= 'like '.=$values[$i];
+        }
+        var_dump($sql);
+        $result = mysqli_query($link, $sql);
+        return $result;
+    }
+
 
     static function _connect_default($dbName)
     {
@@ -49,8 +68,8 @@ class MySqlHelper
         $keys = join(',', array_keys($array));
         $values = "'" . join("','", array_values($array)) . "'";
         $sql = "insert {$table}({$keys}) VALUES ({$values})";
-        //var_dump(mb_detect_encoding($values));
-       // mysqli_query($link, "set name utf-8");
+        //var_dump(mb_detect_encoding($values));  查看编码格式
+        // mysqli_query($link, "set name utf-8");
         $res = mysqli_query($link, $sql);
         if ($res) {
             return $sql;
