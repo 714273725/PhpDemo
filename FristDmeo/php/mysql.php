@@ -20,16 +20,18 @@ class MySqlHelper
     }
 
 
-    static function _check($table, $link, $array, $result_type = MYSQLI_ASSOC)
+    static function _check($table, $link, $array)
     {
-
         $keys = array_keys($array);
         $values = array_values($array);
-        $sql = "select * from {$table} where ";
-        for($i=0;$i<count($keys);$i++){
-            $sql .= $keys[$i].= 'like '.=$values[$i];
+        $sql = "select * from {$table}";
+        for ($i = 0; $i < count($keys); $i++) {
+            if ($i == 0) {
+                $sql = $sql . ' where ' . $keys[0] . ' = ' . '\'' . $values[0] . '\'';
+            } else {
+                $sql = $sql . ' and ' . $keys[(count($keys) - 1)] . ' = ' . '\'' . $values[(count($keys) - 1)] . '\'';
+            }
         }
-        var_dump($sql);
         $result = mysqli_query($link, $sql);
         return $result;
     }

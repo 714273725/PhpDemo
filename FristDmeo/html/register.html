@@ -67,13 +67,18 @@
     $(".login-btn").click(function () {
         var email = $("#email").val();
         var psd = $("#password").val();
-        var verify = $("#user").val();
+        var user_name = $("#user").val();
+        var password = $("#password1").val();
+        if (psd != password) {
+            alert("两次密码输入不一致");
+            return;
+        }
         $.post(
                 "http://localhost/project/PhpDemo/FristDmeo/php/register.php",
 
                 {
-                    email:email,
-                    user_name: decodeURI(verify),
+                    email: email,
+                    user_name: decodeURI(user_name),
                     password: psd
                 },
                 function (results) {

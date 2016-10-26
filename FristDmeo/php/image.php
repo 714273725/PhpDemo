@@ -1,5 +1,5 @@
 <?php
-require_once 'string.php';
+require_once '../include.php';
 function verifyImage($type = 1, $length = 4)
 {
 

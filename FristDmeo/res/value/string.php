@@ -1,4 +1,5 @@
 <?php
-class stringValue{
-    static $usernameHint = '请输入用户名';
-}
+define('user_exits', '用户名已存在');
+define('result', 'result');
+define('msg', 'msg');
+define('data', 'data');
