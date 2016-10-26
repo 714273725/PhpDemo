@@ -6,7 +6,7 @@
  * Time: 22:05
  */
 require_once '../include.php';
-require_once '../res/value/string.php';
+//require_once '../res/value/string.php';
 
 define("email", "email");
 define("user_name", "user_name");
@@ -16,7 +16,6 @@ $_email = $_POST[email];
 $_username = $_POST[user_name];
 $_password = $_POST[password];
 if ($_email && $_username && $_password) {
-    var_dump(get_include_path());
     $array = array(email => $_email, user_name => $_username,
         password => md5($_password), user_id => md5($_username));
     $link = MySqlHelper::_connect_default(db_name);
