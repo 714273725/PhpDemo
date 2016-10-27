@@ -91,7 +91,18 @@ body {
 	height:50px;
 }
 
-#url{
+#login_user_name{
+	display:block;
+	width:276px;
+	height:45px;
+	background:transparent;
+	border:0;
+	color:#bdbdbd;
+	font-family:helvetica, sans-serif;
+	font-size:14px;
+	padding-left:20px;
+}
+#login_user_password{
 	display:block;
 	width:276px;
 	height:45px;

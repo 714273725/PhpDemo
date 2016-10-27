@@ -1,4 +1,6 @@
 <?php
+define("db_name","GEGE");
+define("user_table","user");
 define("mySql_host", "localhost:3306");
 define("mySql_user", "root");
 define("mySql_password", "Ge2007314035");
@@ -43,7 +45,6 @@ class MySqlHelper
         or die ('数据库连接失败<br/>ERROR ' . mysqli_errno($link) . ':' . mysqli_error($link));
         //设置字符集
         mysqli_set_charset($link, mySql_charset);
-        echo $dbName;
         //打开指定的数据库
         mysqli_select_db($link, $dbName) or die('指定的数据库打开失败' . mysqli_errno($link) . ':' . mysqli_error($link));
         return $link;
@@ -70,11 +71,9 @@ class MySqlHelper
         $keys = join(',', array_keys($array));
         $values = "'" . join("','", array_values($array)) . "'";
         $sql = "insert {$table}({$keys}) VALUES ({$values})";
-        //var_dump(mb_detect_encoding($values));  查看编码格式
-        // mysqli_query($link, "set name utf-8");
         $res = mysqli_query($link, $sql);
         if ($res) {
-            return $sql;
+            return self::_check($table, $link, $array);
         } else {
             return false;
         }

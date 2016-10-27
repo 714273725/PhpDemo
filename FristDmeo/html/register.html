@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>注册 - GeGe之家 - GeGe</title>
+    <title> 注册 - GeGe之家 - GeGe</title>
     <link rel="stylesheet" type="text/css" href="../style/register-login.css">
 </head>
 <body>
 <div id="box"></div>
 <div class="cent-box register-box">
     <div class="cent-box-header">
-        <h1 class="main-title hide">GeGe</h1>
-        <h2 class="sub-title">生活热爱分享 - Thousands Find</h2>
+        <h1 class="main-title hide"> GeGe</h1>
+        <h2 class="sub-title"> 生活热爱分享 - Thousands Find </h2>
     </div>
 
     <div class="cont-main clearfix">
@@ -37,14 +37,14 @@
         </div>
 
         <div class="button">
-            <button type="submit" class="login-btn register-btn" id="button">注册</button>
+            <button type="submit" class="login-btn register-btn" id="button"> 注册</button>
         </div>
     </div>
 </div>
 
 <div class="footer">
-    <p>GeGe之家 - GeGe</p>
-    <p>Designed By ZengRong & Amended By GeGe & 2016</p>
+    <p> GeGe之家 - GeGe</p>
+    <p> Designed By ZengRong & Amended By GeGe & 2016 </p>
 </div>
 
 <script src='../js/particles.js' type="text/javascript"></script>
@@ -52,6 +52,7 @@
 <script src='../js/jquery.min.js' type="text/javascript"></script>
 <script src='../js/layer/layer.js' type="text/javascript"></script>
 <script src='../js/index.js' type="text/javascript"></script>
+<script src="../js/jquery.md5.js" type="text/javascript"></script>
 <script>
     $('.imgcode').hover(function () {
         layer.tips("看不清？点击更换", '.verify', {
@@ -65,33 +66,52 @@
     })
 
     $(".login-btn").click(function () {
-        var email = $("#email").val();
-        var psd = $("#password").val();
-        var user_name = $("#user").val();
-        var password = $("#password1").val();
+        var
+                email = $("#email").val();
+        var
+                psd = $("#password").val();
+        var
+                user_name = $("#user").val();
+        var
+                password = $("#password1").val();
+        var
+                verify = $("#verify").val();
+        if (!email) {
+            alert('邮箱不能为空');
+            return
+        }
+        if (!user_name) {
+            alert('用户名不能为空');
+            return
+        }
         if (psd != password) {
             alert("两次密码输入不一致");
             return;
         }
+        if (!verify) {
+            alert("请输入验证码");
+            return;
+        }
         $.post(
                 "http://localhost/project/PhpDemo/FristDmeo/php/register.php",
-
                 {
                     email: email,
                     user_name: decodeURI(user_name),
-                    password: psd
+                    password: $.md5(psd),
+                    verify: verify
+
                 },
                 function (results) {
-                    alert(results);
                     var parsedJson = jQuery.parseJSON(results);
-                    //alert(parsedJson.msg);
+                    alert(parsedJson.msg);
                 }
         );
 
 
     })
     $("#remember-me").click(function () {
-        var n = document.getElementById("remember-me").checked;
+        var
+                n = document.getElementById("remember-me").checked;
         if (n) {
             $(".zt").show();
         } else {
